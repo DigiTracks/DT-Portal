@@ -1,0 +1,12 @@
+# Digi Tracks - Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://DigiTracks.netlify.app/sitemap.xml
+
+# Disallow private/admin paths
+Disallow: /admin
+Disallow: /api
+Disallow: /_next
+Disallow: /static

@@ -1,0 +1,17 @@
+{
+  "name": "Digi Tracks",
+  "short_name": "Digi Tracks",
+  "description": "Independent software product studio building practical applications, business platforms and developer technology.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a1019",
+  "theme_color": "#2dd4bf",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
