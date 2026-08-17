@@ -175,6 +175,7 @@ export const PRODUCTS: Product[] = [
     route: '/products/chronos',
     accent: ACCENT.chronos,
     logo: '/products/chronos.png',
+    demoUrl: 'https://chronusdemo.vercel.app',
     deployment: 'installer',
     metrics: {
       loc: 25000,
@@ -307,6 +308,7 @@ export const PRODUCTS: Product[] = [
     route: '/products/glowra',
     accent: ACCENT.glowra,
     logo: '/products/glowra.png',
+    demoUrl: 'https://glowrademo.vercel.app',
     deployment: 'electron',
     metrics: {
       loc: 30000,
