@@ -13,6 +13,17 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="p-status-row">
         <StatusBadge status={product.status} />
         {product.cli && <span className="p-cli-badge">CLI</span>}
+        {product.demoUrl && (
+          <a
+            href={product.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-demo-link"
+            onClick={(e) => e.stopPropagation()}
+          >
+            Demo Available
+          </a>
+        )}
       </div>
       <h3>{product.name}</h3>
       <p>{product.description}</p>

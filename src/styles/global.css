@@ -1777,6 +1777,7 @@ input, textarea, select {
 .product-card .p-status-row {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 14px;
 }
@@ -1792,6 +1793,8 @@ input, textarea, select {
   color: var(--text-2);
   border: 1px solid var(--border);
   font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .product-card h3 {
@@ -1823,20 +1826,37 @@ input, textarea, select {
 .product-card .p-demo-link {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-3);
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: var(--bg-soft);
-  transition: all 0.16s var(--ease);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 185, 129, 0.7);
+  background: linear-gradient(135deg, #059669, #0d9488);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.55), 0 0 4px rgba(16, 185, 129, 0.4) inset;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  animation: demo-pulse 1.6s ease-in-out infinite;
+  transition: transform 0.16s var(--ease), box-shadow 0.16s var(--ease);
 }
 
 .product-card .p-demo-link:hover {
-  color: var(--text);
-  border-color: var(--text-3);
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.85), 0 0 6px rgba(16, 185, 129, 0.5) inset;
+}
+
+@keyframes demo-pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4), 0 0 3px rgba(16, 185, 129, 0.35) inset;
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(16, 185, 129, 0.85), 0 0 6px rgba(16, 185, 129, 0.5) inset;
+  }
 }
 
 .p-arrow {
