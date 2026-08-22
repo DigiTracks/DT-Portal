@@ -1421,7 +1421,75 @@ export const UNIFY_MODULES: Product[] = [
   }
 ]
 
-export const ALL_PRODUCTS: Product[] = [...PRODUCTS, ...UNIFY_MODULES]
+export const VEDIK_MODULES: Product[] = [
+  {
+    id: 'vedik-social',
+    slug: 'social-community',
+    name: 'Vedik Social Community',
+    category: 'Education',
+    type: 'module',
+    parentProduct: 'vedik',
+    tagline: 'Institutional Social Network, Campus Clubs & Safe Student Community',
+    description:
+      'A secure, AI-moderated campus social network and student community platform designed for educational institutions. Integrates campus feeds, club societies, house points championship, verified student portfolios, safe messaging, and multi-persona portals.',
+    problem:
+      'Students and faculties rely on unmonitored external social networks, creating cyberbullying risks, zero institutional oversight, fragmented club activities, and lack of verified student extracurricular achievement tracking.',
+    capabilities: [
+      'Interactive Campus Feed & Faculty Announcements',
+      '8+ Campus Clubs & Student Societies Management',
+      'Student Honors & Tamper-Proof Portfolio',
+      'House Points Championship & Gamified Leaderboards',
+      'Live Campus Events Calendar & 1-Click RSVP',
+      'Admin AI Safety Engine & Automated Toxicity Moderation',
+      'Multi-Persona Portals (Student, Faculty, Admin, Parent)',
+      'Safe Peer-to-Mentor Messaging Channels',
+      'Custom Institutional Branding & Theme Customizer'
+    ],
+    platforms: ['Web', 'Mobile'],
+    status: 'Ready to Deploy',
+    featured: true,
+    visibility: true,
+    route: '/products/vedik/social-community',
+    accent: ACCENT.vedik,
+    logo: '/products/vedik-community.png',
+    demoUrl: 'https://vediksocial.vercel.app',
+    deployment: 'vercel',
+    metrics: {
+      loc: 18500,
+      endpoints: 42,
+      modules: 12,
+      tests: 64
+    },
+    narrative: {
+      purpose:
+        'Campus engagement and safe social community ecosystem with real-time AI moderation, club governance, and verified extracurricular portfolios.',
+      enhances: [
+        'Institutional community engagement across students, teachers, parents, and administrators',
+        'Extracurricular recognition with verified house points and digital student portfolios',
+        'Campus safety with automated real-time toxicity and cyberbullying filtering',
+        'Event coordination and club participation tracking'
+      ],
+      removes: [
+        'Unmonitored third-party social media channels for campus communication',
+        'Manual club management, attendance tracking, and event signups',
+        'Lost records of student honors, extracurricular leadership, and achievements',
+        'Slow administrative reaction to toxic or unsafe online student interactions'
+      ],
+      unique: [
+        'Built-in AI Safety Engine sandbox for immediate toxicity moderation',
+        'Integrated multi-persona role switching (Student, Faculty, Admin, Parent)',
+        '100% institutionally branded and controlled environment with zero third-party ads'
+      ],
+      reducedFriction: [
+        'Instant zero-configuration web access on any device',
+        'One-click persona preview for rapid institutional evaluation',
+        'Direct integration into the Vedik Unified Education database'
+      ]
+    }
+  }
+]
+
+export const ALL_PRODUCTS: Product[] = [...PRODUCTS, ...UNIFY_MODULES, ...VEDIK_MODULES]
 
 export const PRODUCT_GROUPS: Record<string, { title: string; type: string[] }> = {
   industry: { title: 'Industry Applications', type: ['industry'] },
@@ -1446,7 +1514,7 @@ export const CATEGORIES: string[] = [
 ]
 
 export const getProductBySlug = (slug: string): Product | undefined =>
-  ALL_PRODUCTS.find((p) => p.slug === slug)
+  ALL_PRODUCTS.find((p) => p.slug === slug || p.id === slug)
 
 export const getChildren = (slug: string): Product[] =>
   ALL_PRODUCTS.filter((p) => p.parentProduct === slug)

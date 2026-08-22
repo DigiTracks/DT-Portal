@@ -15,6 +15,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/unify/:slug" element={<ProductDetail />} />
+        <Route path="/products/vedik/:slug" element={<ProductDetail />} />
         <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/about" element={<About />} />
         <Route path="/lab" element={<Lab />} />

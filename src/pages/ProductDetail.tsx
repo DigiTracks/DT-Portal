@@ -26,7 +26,7 @@ export function ProductDetail() {
   if (!product) return <NotFound />
 
   const parent = product.parentProduct ? getProductBySlug(product.parentProduct) : undefined
-  const children = product.type === 'platform' ? getChildren(product.slug) : []
+  const children = getChildren(product.slug)
   const accent = product.accent
 
   // Select the appropriate multi-tier breakdown if present
@@ -35,7 +35,15 @@ export function ProductDetail() {
   return (
     <>
       {/* 1. Hero Overview */}
-      <section className="detail-hero">
+      <section
+        className="detail-hero"
+        style={{
+          background: `radial-gradient(ellipse 80% 50% at 75% 0%, ${accent}18 0%, rgba(255,255,255,0) 70%), var(--bg-soft)`,
+          borderBottom: '1px solid var(--border)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
         <div className="container" style={{ position: 'relative' }}>
           <nav className="detail-crumb" aria-label="Breadcrumb">
             <Link to="/">Home</Link>
@@ -53,16 +61,49 @@ export function ProductDetail() {
 
           <div className="detail-hero-grid">
             <div className="detail-hero-main">
-              <div className="detail-header-row">
-                <img src={product.logo} alt="" className="detail-logo" width="60" height="60" />
-                <div>
+              <div className="detail-header-row" style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+                <div
+                  style={{
+                    padding: 8,
+                    background: '#ffffff',
+                    borderRadius: '16px',
+                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.06)',
+                    border: '1px solid var(--border)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <img src={product.logo} alt="" className="detail-logo" width="60" height="60" style={{ objectFit: 'contain' }} />
+                </div>
+                <div style={{ flex: 1, minWidth: 240 }}>
                   <div className="detail-tagline">{product.tagline}</div>
-                  <h1 className="detail-name" style={{ color: accent }}>
+                  <h1 className="detail-name" style={{ color: accent, margin: '2px 0 0' }}>
                     {product.name}
                   </h1>
                 </div>
+                {product.demoUrl && (
+                  <a
+                    href={product.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-demo-link"
+                    style={{
+                      padding: '8px 18px',
+                      fontSize: '0.8rem',
+                      borderRadius: '999px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      textDecoration: 'none'
+                    }}
+                  >
+                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#fff', display: 'inline-block', boxShadow: '0 0 8px #fff' }} />
+                    Launch Live Demo ↗
+                  </a>
+                )}
               </div>
-              <p className="detail-desc">{product.description}</p>
+              <p className="detail-desc" style={{ marginTop: 14 }}>{product.description}</p>
             </div>
 
             <div className="meta-strip">
@@ -183,44 +224,91 @@ export function ProductDetail() {
             </div>
           )}
 
-          {/* 6. Modules if Platform */}
+          {/* 6. Modules & Ecosystem Applications */}
           {children.length > 0 && (
             <div style={{ marginTop: 56 }}>
-              <p className="kicker">Integrated Modules</p>
+              <p className="kicker">Ecosystem & Modular Extensions</p>
               <h2 className="h3" style={{ marginBottom: 20 }}>
-                {product.name} Modules
+                {product.name} Apps & Modules
               </h2>
               <div className="unify-modules">
                 {children.map((m) => (
-                  <Link key={m.slug} to={m.route} className="unify-module">
+                  <Link key={m.slug} to={m.route} className="unify-module" style={{ ['--accent' as string]: m.accent || accent }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                        {m.logo && (
+                          <div style={{ padding: 4, background: '#f8fafc', borderRadius: 8, border: '1px solid var(--border)', display: 'flex' }}>
+                            <img
+                              src={m.logo}
+                              alt=""
+                              width="32"
+                              height="32"
+                              style={{ objectFit: 'contain' }}
+                            />
+                          </div>
+                        )}
+                        <span className="u-m-name" style={{ margin: 0, fontSize: '1.1rem' }}>
+                          {m.name}
+                        </span>
+                      </div>
+                      {m.demoUrl && (
+                        <span className="p-demo-link" style={{ fontSize: '0.72rem', padding: '3px 10px' }}>
+                          Live Demo
+                        </span>
+                      )}
+                    </div>
                     <span className="u-m-tag">{m.tagline}</span>
-                    <span className="u-m-name">{m.name}</span>
                     <span className="u-m-desc">{m.description}</span>
+                    <div style={{ marginTop: 'auto', paddingTop: 14, display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.84rem', fontWeight: 650, color: m.accent || accent }}>
+                      Explore Module &rarr;
+                    </div>
                   </Link>
                 ))}
               </div>
             </div>
           )}
 
-          {/* 7. Conversion CTA Footer */}
-          <div style={{ marginTop: 56, display: 'flex', flexWrap: 'wrap', gap: 14, alignItems: 'center', paddingTop: 28, borderTop: '1px solid var(--border)' }}>
-            {product.demoUrl && (
-              <a
-                href={product.demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary btn-lg"
-                style={{ background: 'linear-gradient(135deg, #0d9488, #059669)', border: 'none' }}
-              >
-                Launch Interactive Demo &rarr;
-              </a>
-            )}
-            <Link className="btn btn-primary btn-lg" to="/contact">
-              Discuss Custom Deployment &rarr;
-            </Link>
-            <Link className="btn btn-ghost" to="/products">
-              &larr; View All Products
-            </Link>
+          {/* 7. Premium Conversion CTA Banner */}
+          <div
+            style={{
+              marginTop: 64,
+              padding: '36px 40px',
+              background: `linear-gradient(135deg, ${accent}12, #ffffff)`,
+              border: `1px solid ${accent}33`,
+              borderRadius: 'var(--radius)',
+              boxShadow: '0 12px 36px rgba(0, 0, 0, 0.04)',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+          >
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 24, position: 'relative', zIndex: 2 }}>
+              <div style={{ maxWidth: 580 }}>
+                <p className="kicker" style={{ color: accent, marginBottom: 6 }}>Ready for Deployment</p>
+                <h3 className="h2" style={{ margin: '0 0 10px', fontSize: '1.65rem' }}>Experience {product.name} in Action</h3>
+                <p style={{ margin: 0, color: 'var(--text-2)', fontSize: '0.96rem', lineHeight: 1.6 }}>
+                  Explore the live cloud demo or connect with our engineering team for dedicated deployment architecture, integration, and institutional licensing.
+                </p>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center' }}>
+                {product.demoUrl && (
+                  <a
+                    href={product.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-lg"
+                    style={{ background: 'linear-gradient(135deg, #0d9488, #059669)', border: 'none', boxShadow: '0 4px 16px rgba(13, 148, 136, 0.35)' }}
+                  >
+                    Launch Interactive Demo &rarr;
+                  </a>
+                )}
+                <Link className="btn btn-primary btn-lg" to="/contact" style={{ background: accent, border: 'none' }}>
+                  Discuss Custom Deployment &rarr;
+                </Link>
+                <Link className="btn btn-ghost" to="/products">
+                  &larr; View All Products
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
