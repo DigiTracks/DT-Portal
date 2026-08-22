@@ -233,9 +233,9 @@ export function ProductDetail() {
               </h2>
               <div className="unify-modules">
                 {children.map((m) => (
-                  <Link key={m.slug} to={m.route} className="unify-module" style={{ ['--accent' as string]: m.accent || accent }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <div key={m.slug} className="unify-module" style={{ ['--accent' as string]: m.accent || accent }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12, gap: 8, flexWrap: 'wrap' }}>
+                      <Link to={m.route} style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', color: 'inherit' }}>
                         {m.logo && (
                           <div style={{ padding: 4, background: '#f8fafc', borderRadius: 8, border: '1px solid var(--border)', display: 'flex' }}>
                             <img
@@ -250,19 +250,37 @@ export function ProductDetail() {
                         <span className="u-m-name" style={{ margin: 0, fontSize: '1.1rem' }}>
                           {m.name}
                         </span>
-                      </div>
+                      </Link>
                       {m.demoUrl && (
-                        <span className="p-demo-link" style={{ fontSize: '0.72rem', padding: '3px 10px' }}>
-                          Live Demo
-                        </span>
+                        <a
+                          href={m.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-demo-link"
+                          style={{ fontSize: '0.72rem', padding: '3px 10px', textDecoration: 'none' }}
+                        >
+                          Live Demo ↗
+                        </a>
                       )}
                     </div>
                     <span className="u-m-tag">{m.tagline}</span>
                     <span className="u-m-desc">{m.description}</span>
-                    <div style={{ marginTop: 'auto', paddingTop: 14, display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.84rem', fontWeight: 650, color: m.accent || accent }}>
-                      Explore Module &rarr;
+                    <div style={{ marginTop: 'auto', paddingTop: 14, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
+                      <Link to={m.route} style={{ fontSize: '0.84rem', fontWeight: 650, color: m.accent || accent, textDecoration: 'none' }}>
+                        Explore Capabilities &rarr;
+                      </Link>
+                      {m.demoUrl && (
+                        <a
+                          href={m.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--accent-dark)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}
+                        >
+                          Launch Demo ↗
+                        </a>
+                      )}
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
             </div>
