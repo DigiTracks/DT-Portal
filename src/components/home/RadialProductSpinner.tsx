@@ -152,15 +152,35 @@ export function RadialProductSpinner() {
                 </div>
 
                 <div className="drawer-buttons-row">
-                  <Link to={selectedProduct.route} className="btn btn-primary">
-                    Open Full {selectedProduct.name} Product Page &rarr;
+                  {selectedProduct.demoUrl && (
+                    <a
+                      href={selectedProduct.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                      style={{
+                        background: 'linear-gradient(135deg, #059669, #0d9488)',
+                        border: 'none',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 8,
+                        fontWeight: 700,
+                        boxShadow: '0 4px 14px rgba(16, 185, 129, 0.35)'
+                      }}
+                    >
+                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />
+                      Launch Live Demo ↗
+                    </a>
+                  )}
+                  <Link to={selectedProduct.route} className="btn btn-primary" style={{ background: selectedProduct.accent, border: 'none' }}>
+                    Open Full {selectedProduct.name} Page &rarr;
                   </Link>
                   <button
                     type="button"
                     className="btn btn-ghost"
                     onClick={() => setSelectedProductSlug(null)}
                   >
-                    Keep Browsing Circle
+                    Close
                   </button>
                 </div>
               </div>
