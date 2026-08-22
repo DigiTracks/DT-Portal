@@ -43,7 +43,7 @@ export const PRODUCTS: Product[] = [
     route: '/products/vedik',
     accent: ACCENT.vedik,
     logo: '/products/vedik.png',
-    demoUrl: 'https://vedik-demo.netlify.app/login/',
+    demoUrl: 'https://vedik-demo.netlify.app/dashboard/',
     deployment: 'docker',
     metrics: {
       loc: 33000,
@@ -1422,6 +1422,71 @@ export const UNIFY_MODULES: Product[] = [
 ]
 
 export const VEDIK_MODULES: Product[] = [
+  {
+    id: 'vedik-school-erp',
+    slug: 'school-erp',
+    name: 'Vedik School Management ERP',
+    category: 'Education',
+    type: 'module',
+    parentProduct: 'vedik',
+    tagline: 'Comprehensive School ERP, Academics, Fee Collection & Administration',
+    description:
+      'A complete, all-in-one management system designed to streamline every aspect of school administration — from student admissions and fee collection to teacher workloads, daily attendance, examination gradebooks, transport, and academic reporting.',
+    problem:
+      'Schools juggle disjointed software tools for fees, attendance, student records, and timetables, leading to administrative overhead, error-prone spreadsheets, and delayed reporting to parents and boards.',
+    capabilities: [
+      'Admissions, Student Profiles & Digital Enrollment',
+      'Tuition Fee Invoices, Online Collections & Receipts',
+      'Daily Attendance, Teacher Workloads & Staff Rosters',
+      'Timetable Scheduling & Automated Class Allocations',
+      'Examination Engine, Gradebooks & Report Cards',
+      'Transport Fleet & Bus Route Optimization',
+      'Library Management System & Asset Tracking',
+      'Parent & Student Self-Service Portals',
+      'CBSE, ICSE & State Board Compliance Ready'
+    ],
+    platforms: ['Web', 'Mobile'],
+    status: 'Ready to Deploy',
+    featured: true,
+    visibility: true,
+    route: '/products/vedik/school-erp',
+    accent: ACCENT.vedik,
+    logo: '/products/vedik.png',
+    demoUrl: 'https://vedik-demo.netlify.app/dashboard/',
+    deployment: 'vercel',
+    metrics: {
+      loc: 33000,
+      endpoints: 78,
+      modules: 21,
+      tests: 136
+    },
+    narrative: {
+      purpose:
+        'Single unified operational ERP backbone for K-12 primary and secondary educational institutions.',
+      enhances: [
+        'Streamlined fee collection with automated digital receipts and payment reconciliation',
+        'Real-time gradebook entry and instant report card generation',
+        'Unified parent communication with instant SMS and email notifications',
+        'End-to-end transport and bus fleet visibility'
+      ],
+      removes: [
+        'Paper-based registers and manual daily attendance calculation',
+        'Unreconciled fee dues and delayed cash-flow tracking',
+        'Fragmented third-party library, timetable, and transport plugins',
+        'Complicated manual compliance reporting for CBSE and ICSE boards'
+      ],
+      unique: [
+        '30+ fully functional administrative and academic workflows in a single glassmorphic interface',
+        'Zero-setup role switcher for rapid administrative walkthrough',
+        'Print-ready fee receipts, payslips, student ID cards, and official certificates'
+      ],
+      reducedFriction: [
+        'Direct browser dashboard access with zero installation required',
+        'Pre-configured academic master data templates for immediate onboarding',
+        'Integrated with Vedik Social Community for unified campus engagement'
+      ]
+    }
+  },
   {
     id: 'vedik-social',
     slug: 'social-community',
